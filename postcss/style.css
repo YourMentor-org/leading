@@ -1,0 +1,14 @@
+@import "a.css";
+@import "b.css";
+
+.logo {
+  color: blue;
+
+  &--footer {
+    color: green;
+
+    @media (min-width: 100px) {
+      color: red;
+    }
+  }
+}

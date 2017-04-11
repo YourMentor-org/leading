@@ -1,0 +1,24 @@
+{
+  "name": "lending",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Проект «Lending»",
+  "devDependencies": {
+    "autoprefixer": "6.7.x",
+    "browser-sync": "2.18.8",
+    "cssnano": "^3.10.0",
+    "del": "^2.2.2",
+    "gulp": "3.9.1",
+    "gulp-plumber": "1.1.0",
+    "gulp-postcss": "6.3.0",
+    "gulp-rename": "^1.2.2",
+    "postcss-nested": "^1.0.0",
+    "precss": "^1.4.0"
+  },
+  "scripts": {
+    "start": "gulp serve"
+  },
+  "engines": {
+    "node": "6.10"
+  }
+}
