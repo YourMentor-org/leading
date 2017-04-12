@@ -6,14 +6,20 @@
   "devDependencies": {
     "autoprefixer": "6.7.x",
     "browser-sync": "2.18.8",
+    "css-mqpacker": "^5.0.1",
     "cssnano": "^3.10.0",
     "del": "^2.2.2",
     "gulp": "3.9.1",
     "gulp-plumber": "1.1.0",
     "gulp-postcss": "6.3.0",
     "gulp-rename": "^1.2.2",
+    "postcss-calc": "^5.3.1",
+    "postcss-color-function": "^3.0.0",
+    "postcss-import": "^9.1.0",
+    "postcss-media-variables": "^2.0.0",
+    "postcss-mixins": "^5.4.1",
     "postcss-nested": "^1.0.0",
-    "precss": "^1.4.0"
+    "postcss-simple-vars": "^3.1.0"
   },
   "scripts": {
     "start": "gulp serve"
