@@ -4,26 +4,16 @@ var gulp = require("gulp");
 var plumber = require("gulp-plumber");
 var rename = require("gulp-rename");
 var postcss = require("gulp-postcss");
-var simpleVars = require("postcss-simple-vars");
-var mixins = require("postcss-mixins");
-var nested = require("postcss-nested");
+var precss = require("precss");
 var cssnano = require("cssnano");
 var calc = require("postcss-calc");
-var colorFunction = require("postcss-color-function");
-var styleImport = require("postcss-import");
 var autoprefixer = require("autoprefixer");
 var mqpacker = require("css-mqpacker");
 var server = require("browser-sync").create();
 
 gulp.task("style", function() {
   var processors = [
-    styleImport,
-    nested,
-    colorFunction,
-    simpleVars({
-      silent: true
-    }),
-    mixins,
+    precss,
     calc({
       mediaQueries: true
     }),

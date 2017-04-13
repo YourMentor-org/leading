@@ -19,7 +19,8 @@
     "postcss-media-variables": "^2.0.0",
     "postcss-mixins": "^5.4.1",
     "postcss-nested": "^1.0.0",
-    "postcss-simple-vars": "^3.1.0"
+    "postcss-simple-vars": "^3.1.0",
+    "precss": "^1.4.0"
   },
   "scripts": {
     "start": "gulp serve"
