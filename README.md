@@ -26,4 +26,5 @@ npm start
 - [cssnano](https://github.com/ben-eb/cssnano);
 - [postcss-calc](https://github.com/postcss/postcss-calc);
 - [css-mqpacker](https://github.com/hail2u/node-css-mqpacker);
-- [autoprefixer](https://www.npmjs.com/package/autoprefixer).
+- [autoprefixer](https://www.npmjs.com/package/autoprefixer);
+- [cssnano](https://github.com/ben-eb/cssnano)/
