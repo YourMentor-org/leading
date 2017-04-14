@@ -4,3 +4,5 @@
 *.psd
 *.zip
 Thumbs.db
+css/
+node_modules/
