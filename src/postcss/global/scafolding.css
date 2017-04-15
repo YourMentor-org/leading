@@ -1,0 +1,15 @@
+html {
+  box-sizing: border-box;
+
+  font-family: $font;
+  font-size: 100%;
+  font-weight: 400;
+
+  background-color: $bg-color--white;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
