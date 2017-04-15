@@ -6,6 +6,7 @@
   "devDependencies": {
     "autoprefixer": "6.7.x",
     "browser-sync": "2.18.8",
+    "cheerio": "^0.22.0",
     "css-mqpacker": "^5.0.1",
     "cssnano": "^3.10.0",
     "del": "^2.2.2",
@@ -14,6 +15,7 @@
     "gulp-plumber": "1.1.0",
     "gulp-postcss": "6.3.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.0",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.0",
     "postcss-calc": "^5.3.1",
