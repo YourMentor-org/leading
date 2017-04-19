@@ -6,7 +6,6 @@
   "devDependencies": {
     "autoprefixer": "6.7.x",
     "browser-sync": "2.18.8",
-    "cheerio": "^0.22.0",
     "css-mqpacker": "^5.0.1",
     "cssnano": "^3.10.0",
     "del": "^2.2.2",
@@ -19,14 +18,8 @@
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.0",
     "postcss-calc": "^5.3.1",
-    "postcss-simple-vars": "^3.1.0",
     "precss": "^1.4.0",
     "run-sequence": "^1.2.2"
-  },
-  "scripts": {
-    "start": "gulp",
-    "images": "gulp images",
-    "symbols": "gulp symbols"
   },
   "engines": {
     "node": "6.10"

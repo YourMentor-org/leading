@@ -30,7 +30,7 @@ var path = {
     html: "src/*.html",
     js: "src/js/script.js",
     css: "src/postcss/style.css",
-    img: "src/img/**/*.{png,jpg,gif,svg}",
+    img: ["src/img/**/*.{png,jpg,gif,svg}", "!src/img/icons/*.*"],
     icon: "src/img/icons/*.svg",
     fonts: "src/fonts/**/*.*"
   },
@@ -61,33 +61,49 @@ gulp.task("js", function() {
     .pipe(server.stream());
 });
 
-gulp.task("style", function() {
-  var processors = [
-    precss,
-    calc({
-      mediaQueries: true
-    }),
-    autoprefixer({
-      browsers: [
-        "last 2 versions"
-      ]
-    }),
-    mqpacker({
-      sort: true
-    })
-  ];
+var processors = [
+  precss,
+  calc({
+    mediaQueries: true
+  }),
+  autoprefixer({
+    browsers: [
+      "last 2 versions"
+    ]
+  }),
+  mqpacker({
+    sort: true
+  })
+];
+
+gulp.task("style:dev", function() {
   return gulp.src(path.src.css)
+  .pipe(plumber())
     .pipe(sourcemaps.init())
-      .pipe(plumber())
       .pipe(postcss(processors))
-      .pipe(postcss(cssnano))
     .pipe(sourcemaps.write())
     .pipe(rename("style.min.css"))
     .pipe(gulp.dest(path.build.css))
     .pipe(server.stream());
 });
 
-gulp.task("images", function() {
+gulp.task("style:prod", function() {
+  return gulp.src(path.src.css)
+  .pipe(plumber())
+  .pipe(postcss(processors))
+  .pipe(postcss(cssnano))
+  .pipe(rename("style.min.css"))
+  .pipe(gulp.dest(path.build.css))
+  .pipe(server.stream());
+});
+
+gulp.task("images:dev", function() {
+  return gulp.src(path.src.img)
+    .pipe(gulp.dest(path.build.img))
+    .pipe(server.stream());
+});
+
+gulp.task("images:prod", function() {
   return gulp.src(path.src.img)
     .pipe(imagemin([
       imagemin.optipng({optimizationLevel: 3}),
@@ -97,16 +113,20 @@ gulp.task("images", function() {
     .pipe(server.stream());
 });
 
-gulp.task("cleanIcons", function() {
-  return del(path.build.icon);
+gulp.task("symbols:dev", function() {
+  return gulp.src(path.src.icon)
+    .pipe(svgstore({
+      inlineSvg: true
+    }))
+    .pipe(rename("symbols.svg"))
+    .pipe(gulp.dest(path.build.img))
+    .pipe(server.stream());
 });
 
-gulp.task("symbols", function() {
+gulp.task("symbols:prod", function() {
   return gulp.src(path.src.icon)
     .pipe(svgmin({
-      plugins: [{
-        removeStyleElement: true
-      }]
+      plugins: [{removeStyleElement: true}]
     }))
     .pipe(svgstore({
       inlineSvg: true
@@ -135,46 +155,39 @@ gulp.task("serve", function() {
   server.init(config);
 });
 
-gulp.task("build", function(fn) {
-  run(
-    "clean",
-    "html",
-    "js",
-    "style",
-    "images",
-    "cleanIcons",
-    "symbols",
-    "fonts",
-    fn
-  );
-});
-
 gulp.task("watch", function() {
-  gulp.watch([path.watch.html], function(event, cb) {
-    gulp.start("html");
-  });
-  gulp.watch([path.watch.css], function(event, cb) {
-    gulp.start("style");
-  });
-  gulp.watch([path.watch.js], function(event, cb) {
-    gulp.start("js");
-  });
-  gulp.watch([path.watch.img], function(event, cb) {
-    gulp.start("images");
-  });
-  gulp.watch([path.watch.icon], function(event, cb) {
-    gulp.start("symbols");
-  });
-  gulp.watch([path.watch.fonts], function(event, cb) {
-    gulp.start("fonts");
-  });
+  gulp.watch(path.watch.html, ["html"]);
+  gulp.watch(path.watch.css, ["style:dev"]);
+  gulp.watch(path.watch.js, ["js"]);
+  gulp.watch(path.watch.img, ["images:dev"]);
+  gulp.watch(path.watch.icon, ["symbols:dev"]);
+  gulp.watch(path.watch.fonts, ["fonts"]);
 });
 
 gulp.task("default", function(fn) {
   run(
-    "build",
-    "serve",
+    "clean",
+    "html",
+    "js",
+    "symbols:dev",
+    "style:dev",
+    "images:dev",
+    "fonts",
     "watch",
+    "serve",
+    fn
+  );
+});
+
+gulp.task("production", function(fn) {
+  run(
+    "clean",
+    "html",
+    "js",
+    "symbols:prod",
+    "style:prod",
+    "images:prod",
+    "fonts",
     fn
   );
 });
