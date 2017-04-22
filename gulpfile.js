@@ -73,26 +73,28 @@ var processors = [
   }),
   mqpacker({
     sort: true
-  })
+  }),
+  cssnano
 ];
 
 gulp.task("style:dev", function() {
   return gulp.src(path.src.css)
   .pipe(plumber())
-    .pipe(sourcemaps.init())
-      .pipe(postcss(processors))
-    .pipe(sourcemaps.write())
-    .pipe(rename("style.min.css"))
+    .pipe(postcss([
+      precss,
+      calc({
+        mediaQueries: true
+      })
+    ]))
     .pipe(gulp.dest(path.build.css))
     .pipe(server.stream());
 });
 
 gulp.task("style:prod", function() {
   return gulp.src(path.src.css)
-  .pipe(plumber())
-  .pipe(postcss(processors))
-  .pipe(postcss(cssnano))
-  .pipe(rename("style.min.css"))
+  .pipe(sourcemaps.init())
+    .pipe(postcss(processors))
+  .pipe(sourcemaps.write())
   .pipe(gulp.dest(path.build.css))
   .pipe(server.stream());
 });
