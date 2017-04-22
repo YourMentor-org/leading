@@ -14,17 +14,12 @@
     "gulp-plumber": "1.1.0",
     "gulp-postcss": "6.3.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.0",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.0",
     "postcss-calc": "^5.3.1",
-    "postcss-simple-vars": "^3.1.0",
     "precss": "^1.4.0",
     "run-sequence": "^1.2.2"
-  },
-  "scripts": {
-    "start": "gulp",
-    "images": "gulp images",
-    "symbols": "gulp symbols"
   },
   "engines": {
     "node": "6.10"

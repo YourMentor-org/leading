@@ -13,10 +13,16 @@
 npm i
 `
 
-Запустить `gulp`
+Запуск сборки для разработки
 
 `
-npm start
+gulp
+`
+
+Запуск сборки для production
+
+`
+gulp production
 `
 
 ### Используемые плагины PostCSS
